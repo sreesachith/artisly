@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Mehta",
+    "category": "Singer",
+    "location": "Mumbai",
+    "priceRange": "₹20,000 - ₹40,000"
+  },
+  {
+    "id": 2,
+    "name": "Sara Khan",
+    "category": "Dancer",
+    "location": "Delhi",
+    "priceRange": "₹15,000 - ₹30,000"
+  },
+  {
+    "id": 3,
+    "name": "Rahul Bose",
+    "category": "Stand-up",
+    "location": "Bangalore",
+    "priceRange": "₹50,000 - ₹70,000"
+  },
+  {
+    "id": 4,
+    "name": "Neha Sharma",
+    "category": "DJ",
+    "location": "Mumbai",
+    "priceRange": "₹25,000 - ₹35,000"
+  },
+  {
+    "id": 5,
+    "name": "Varun Kapoor",
+    "category": "Singer",
+    "location": "Delhi",
+    "priceRange": "₹30,000 - ₹50,000"
+  },
+  {
+    "id": 6,
+    "name": "Priya Desai",
+    "category": "Dancer",
+    "location": "Bangalore",
+    "priceRange": "₹18,000 - ₹28,000"
+  },
+  {
+    "id": 7,
+    "name": "Amit Trivedi",
+    "category": "Stand-up",
+    "location": "Mumbai",
+    "priceRange": "₹60,000 - ₹90,000"
+  },
+  {
+    "id": 8,
+    "name": "Kritika Verma",
+    "category": "DJ",
+    "location": "Delhi",
+    "priceRange": "₹20,000 - ₹25,000"
+  },
+  {
+    "id": 9,
+    "name": "Rohan Joshi",
+    "category": "Singer",
+    "location": "Bangalore",
+    "priceRange": "₹35,000 - ₹60,000"
+  },
+  {
+    "id": 10,
+    "name": "Sneha Iyer",
+    "category": "Dancer",
+    "location": "Mumbai",
+    "priceRange": "₹12,000 - ₹20,000"
+  },
+  {
+    "id": 11,
+    "name": "Vikram Rao",
+    "category": "Stand-up",
+    "location": "Delhi",
+    "priceRange": "₹45,000 - ₹55,000"
+  },
+  {
+    "id": 12,
+    "name": "Megha Kapoor",
+    "category": "DJ",
+    "location": "Bangalore",
+    "priceRange": "₹22,000 - ₹32,000"
+  }
+]
