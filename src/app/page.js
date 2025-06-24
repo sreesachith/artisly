@@ -20,24 +20,26 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
-      <main>
-        <HeroSection />
-        <section className="py-12 px-6">
-          <h3 className="text-2xl font-semibold text-center mb-8">
-            Artist Categories
-          </h3>
-          <div className="flex flex-col gap-6">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.name}
-                name={category.name}
-                image={category.image}
-              />
-            ))}
-          </div>
-        </section>
-      </main>
+      <div className="bg-black text-white min-h-screen">
+        <Header />
+        <main>
+          <HeroSection />
+          <section className="py-12 px-6">
+            <h3 className="text-2xl font-semibold text-center mb-8">
+              Artist Categories
+            </h3>
+            <div className="flex flex-col gap-6">
+              {categories.map((category) => (
+                <CategoryCard
+                  key={category.name}
+                  name={category.name}
+                  image={category.image}
+                />
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
     </>
   );
 }
