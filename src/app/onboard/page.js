@@ -54,7 +54,8 @@ export default function ArtistOnboardingForm() {
   };
 
   return (
-    <>
+      <>
+          <div className="bg-black text-white min-h-screen">
       <Header />
       <main className="max-w-2xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6 text-center">
@@ -170,7 +171,8 @@ export default function ArtistOnboardingForm() {
             </p>
           )}
         </form>
-      </main>
+              </main>
+        </div>
     </>
   );
 }
