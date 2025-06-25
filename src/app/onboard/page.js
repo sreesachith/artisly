@@ -2,6 +2,7 @@
 
 import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
+import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import MultiSelectDropdown from "@/components/MultiSelectDropdown";
@@ -24,7 +25,7 @@ const schema = Yup.object().shape({
   category: Yup.array().min(1, "Select at least one category"),
   languages: Yup.array().min(1, "Select at least one language"),
   feeRange: Yup.string().required("Fee range is required"),
-  profileImage: Yup.mixed().notRequired(),
+  profileImage: Yup.mixed().notRequired(), // not storing this
 });
 
 export default function ArtistOnboardingForm() {
@@ -32,6 +33,7 @@ export default function ArtistOnboardingForm() {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -49,13 +51,29 @@ export default function ArtistOnboardingForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("Submitted Artist Data:", data);
+    const existing =
+      JSON.parse(localStorage.getItem("artistSubmissions")) || [];
+
+    // Remove the image file from what is saved to localStorage
+    const { profileImage, ...rest } = data;
+
+    const newEntry = {
+      id: Date.now(),
+      ...rest,
+    };
+
+    localStorage.setItem(
+      "artistSubmissions",
+      JSON.stringify([...existing, newEntry])
+    );
+
+    console.log("Submitted Artist Data (excluding image):", newEntry);
     setSubmitted(true);
+    reset();
   };
 
   return (
-      <>
-          <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen">
       <Header />
       <main className="max-w-2xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6 text-center">
@@ -68,7 +86,7 @@ export default function ArtistOnboardingForm() {
             <label className="block font-medium mb-1">Name</label>
             <input
               {...register("name")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded border-white text-white"
             />
             <p className="text-red-500 text-sm">{errors.name?.message}</p>
           </div>
@@ -78,12 +96,12 @@ export default function ArtistOnboardingForm() {
             <label className="block font-medium mb-1">Bio</label>
             <textarea
               {...register("bio")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded border-white text-white"
             />
             <p className="text-red-500 text-sm">{errors.bio?.message}</p>
           </div>
 
-          {/* Category (dropdown with checkboxes) */}
+          {/* Category */}
           <div>
             <label className="block font-medium mb-1">Category</label>
             <Controller
@@ -101,7 +119,7 @@ export default function ArtistOnboardingForm() {
             <p className="text-red-500 text-sm">{errors.category?.message}</p>
           </div>
 
-          {/* Languages (dropdown with checkboxes) */}
+          {/* Languages */}
           <div>
             <label className="block font-medium mb-1">Languages Spoken</label>
             <Controller
@@ -130,7 +148,7 @@ export default function ArtistOnboardingForm() {
                   label="Fee Range"
                   name="feeRange"
                   value={field.value}
-                  onChange={(_, val) => field.onChange(val)} // only pass the value to react-hook-form
+                  onChange={(_, val) => field.onChange(val)}
                   options={feeRanges}
                 />
               )}
@@ -143,7 +161,7 @@ export default function ArtistOnboardingForm() {
             <label className="block font-medium mb-1">Location</label>
             <input
               {...register("location")}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded border-white text-white"
             />
             <p className="text-red-500 text-sm">{errors.location?.message}</p>
           </div>
@@ -154,7 +172,11 @@ export default function ArtistOnboardingForm() {
               Profile Image (optional)
             </label>
             <div className="w-1/3 text-sm text-black bg-gray-400 mb-2">
-              <input type="file" {...register("profileImage")} />
+              <input
+                type="file"
+                accept="image/*"
+                {...register("profileImage")}
+              />
             </div>
           </div>
 
@@ -166,13 +188,18 @@ export default function ArtistOnboardingForm() {
           </button>
 
           {submitted && (
-            <p className="text-green-600 text-center mt-4">
-              Artist submitted successfully!
-            </p>
+            <div className="text-center mt-4 space-y-2">
+              <p className="text-green-400">Artist submitted successfully!</p>
+              <Link
+                href="/manager-dashboard"
+                className="inline-block bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-200 transition"
+              >
+                View Submissions on manager dashboard
+              </Link>
+            </div>
           )}
         </form>
-              </main>
-        </div>
-    </>
+      </main>
+    </div>
   );
 }
