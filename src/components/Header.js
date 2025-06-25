@@ -15,6 +15,9 @@ export default function Header() {
         <Link href="/onboard" className="text-white-700 hover:text-indigo-600">
           onboard
         </Link>
+        <Link href="/manager-dashboard" className="text-white-700 hover:text-indigo-600">
+          ManagerDashboard
+        </Link>
       </nav>
     </header>
   );
